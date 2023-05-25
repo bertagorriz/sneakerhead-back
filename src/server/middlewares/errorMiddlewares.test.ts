@@ -18,7 +18,7 @@ const error = new CustomError(404, "Not found");
 
 describe("Given a generalError middleware", () => {
   describe("When it receives an error with status code '404' and the message 'Not found'", () => {
-    test("Then it should call the response's method with status code '404'", () => {
+    test("Then it should call the response's status method with status code '404'", () => {
       const expectedStatusCode = 404;
 
       generalError(
@@ -31,7 +31,7 @@ describe("Given a generalError middleware", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call the response's method with message 'Not found'", () => {
+    test("Then it should call the response's json method with message 'Not found'", () => {
       const expectedMessage = "Not found";
 
       generalError(
@@ -48,7 +48,7 @@ describe("Given a generalError middleware", () => {
   describe("When it receives an error without status code", () => {
     const error = new Error();
 
-    test("Then it should call the response's method with status code '500'", () => {
+    test("Then it should call the response's status method with status code '500'", () => {
       const expectedStatusCode = 500;
 
       generalError(
@@ -61,7 +61,7 @@ describe("Given a generalError middleware", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call the response's method with message 'General error'", () => {
+    test("Then it should call the response's json method with message 'General error'", () => {
       const expectedMessage = "General error";
 
       generalError(
