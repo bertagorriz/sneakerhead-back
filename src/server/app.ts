@@ -2,6 +2,9 @@ import "../loadEnvironment.js";
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import { generalError, notFoundError } from "./middlewares/errorMiddlewares.js";
+import { pingController } from "./controller/pingController/pingController.js";
+import path from "../server/paths/paths.js";
 
 const allowedOrigins = [process.env.ALLOWED_ORIGIN_DEV!];
 
@@ -18,3 +21,9 @@ app.disable("x-powered-by");
 app.use(express.json());
 
 app.use(morgan("dev"));
+
+app.use(path.pingController, pingController);
+
+app.use(notFoundError);
+
+app.use(generalError);
