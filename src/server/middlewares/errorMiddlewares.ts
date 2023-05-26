@@ -3,7 +3,7 @@ import { type NextFunction, type Request, type Response } from "express";
 import createDebug from "debug";
 import chalk from "chalk";
 import type CustomError from "../../CustomError/CustomError.js";
-import { responseErrorData } from "../../utils/responseErrorData.js";
+import { responseErrorData } from "../../utils/responseData/responseErrorData.js";
 
 const debug = createDebug("sneakers-api:server:middlewares:errorMiddlewares");
 
