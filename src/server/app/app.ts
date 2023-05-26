@@ -7,7 +7,7 @@ import {
   notFoundError,
 } from "../middlewares/errorMiddlewares.js";
 import { pingController } from "../controller/pingController/pingController.js";
-import path from "../paths/paths.js";
+import paths from "../paths/paths.js";
 import userRouter from "../routers/users/userRouter.js";
 
 const allowedOrigins = [process.env.ALLOWED_ORIGIN_DEV!];
@@ -26,9 +26,9 @@ app.use(express.json());
 
 app.use(morgan("dev"));
 
-app.get(path.ping, pingController);
+app.get(paths.ping, pingController);
 
-app.use(path.user, userRouter);
+app.use(paths.user, userRouter);
 
 app.use(notFoundError);
 
