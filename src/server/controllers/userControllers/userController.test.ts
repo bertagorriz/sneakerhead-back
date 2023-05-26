@@ -2,7 +2,7 @@ import { type NextFunction, type Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { userData, userDataCredentials } from "../../../mocks/userMocks.js";
-import { type UserCredentialsRequest } from "../../types";
+import { type UserCredentialsRequest } from "../../../types.js";
 import { loginUser } from "./userController.js";
 import User from "../../../database/models/User.js";
 import { responseErrorData } from "../../../utils/responseData/responseErrorData.js";
