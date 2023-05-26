@@ -1,5 +1,5 @@
 interface PathsStructure {
-  pingController: string;
+  ping: string;
 }
 
 export default PathsStructure;

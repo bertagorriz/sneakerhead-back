@@ -1,7 +1,7 @@
 import type PathsStructure from "./types";
 
 const path: PathsStructure = {
-  pingController: "/",
+  ping: "/",
 };
 
 export default path;

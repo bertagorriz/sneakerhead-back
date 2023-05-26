@@ -1,7 +1,8 @@
 import { type Request, type Response, type NextFunction } from "express";
-import CustomError from "../../CustomError/CustomError.js";
+import type CustomError from "../../CustomError/CustomError.js";
 import { generalError } from "./errorMiddlewares.js";
 import { notFoundError } from "./errorMiddlewares.js";
+import { responseErrorData } from "../../utils/responseErrorData.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -14,10 +15,10 @@ const res: Partial<Response> = {
 const req = {};
 const next = jest.fn();
 
-const error = new CustomError(404, "Not found");
+const error = responseErrorData.endpointNotFound;
 
 describe("Given a generalError middleware", () => {
-  describe("When it receives an error with status code '404' and the message 'Not found'", () => {
+  describe("When it receives an error with status code '404' and the message 'Endpoint not found'", () => {
     test("Then it should call the response's status method with status code '404'", () => {
       const expectedStatusCode = 404;
 
@@ -31,8 +32,8 @@ describe("Given a generalError middleware", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call the response's json method with message 'Not found'", () => {
-      const expectedMessage = "Not found";
+    test("Then it should call the response's json method with message 'Endpoint not found'", () => {
+      const expectedMessage = "Endpoint not found";
 
       generalError(
         error,
@@ -78,8 +79,8 @@ describe("Given a generalError middleware", () => {
 
 describe("Given a notFoundError middleware", () => {
   describe("When it receives a request and a next function", () => {
-    test("Then it should call the response's method with status code '404' and the message 'Not found'", () => {
-      const error = new CustomError(404, "Not found");
+    test("Then it should call the response's method with status code '404' and the message 'Endpoint not found'", () => {
+      const error = responseErrorData.endpointNotFound;
 
       notFoundError(req as Request, res as Response, next as NextFunction);
 

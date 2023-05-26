@@ -2,7 +2,8 @@ import "../../loadEnvironment.js";
 import { type NextFunction, type Request, type Response } from "express";
 import createDebug from "debug";
 import chalk from "chalk";
-import CustomError from "../../CustomError/CustomError.js";
+import type CustomError from "../../CustomError/CustomError.js";
+import { responseErrorData } from "../../utils/responseErrorData.js";
 
 const debug = createDebug("sneakers-api:server:middlewares:errorMiddlewares");
 
@@ -26,7 +27,7 @@ export const notFoundError = (
   _res: Response,
   next: NextFunction
 ) => {
-  const error = new CustomError(404, "Not found");
+  const error = responseErrorData.endpointNotFound;
 
   next(error);
 };
