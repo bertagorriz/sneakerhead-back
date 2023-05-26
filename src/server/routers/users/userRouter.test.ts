@@ -4,7 +4,7 @@ import request from "supertest";
 import jwt from "jsonwebtoken";
 import paths from "../../paths/paths.js";
 import { app } from "../../app/app.js";
-import { type UserCredentials } from "../../types";
+import { type UserCredentials } from "../../../types.js";
 import {
   userData,
   userDataHashed,

@@ -6,9 +6,10 @@ import {
   generalError,
   notFoundError,
 } from "../middlewares/errorMiddlewares.js";
-import { pingController } from "../controller/pingController/pingController.js";
+import { pingController } from "../controllers/pingController/pingController.js";
 import paths from "../paths/paths.js";
 import userRouter from "../routers/users/userRouter.js";
+import { getSneakers } from "../controllers/sneakerController/sneakerController.js";
 
 const allowedOrigins = [process.env.ALLOWED_ORIGIN_DEV!];
 
@@ -29,6 +30,8 @@ app.use(morgan("dev"));
 app.get(paths.ping, pingController);
 
 app.use(paths.user, userRouter);
+
+app.use("/sneakers", getSneakers);
 
 app.use(notFoundError);
 

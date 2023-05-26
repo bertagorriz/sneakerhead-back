@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validate } from "express-validation";
-import { loginUser } from "../../controller/userControllers/userController.js";
+import { loginUser } from "../../controllers/userControllers/userController.js";
 import paths from "../../paths/paths.js";
 import loginSchema from "../../../utils/Schemas/loginSchema.js";
 

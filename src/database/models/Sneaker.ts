@@ -19,19 +19,11 @@ const sneakerSchema = new Schema({
     type: Number,
     required: true,
   },
-  colors: [{ type: String }],
-  features: [
-    {
-      description: [
-        {
-          type: String,
-        },
-      ],
-      isAvailable: {
-        type: Boolean,
-      },
-    },
-  ],
+  colors: [String],
+  features: {
+    description: [String],
+    isAvailable: Boolean,
+  },
   user: {
     type: Types.ObjectId,
     ref: User,
