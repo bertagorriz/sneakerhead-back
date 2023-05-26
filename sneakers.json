@@ -1,0 +1,72 @@
+[
+  {
+    "name": "990v5",
+    "brand": "New Balance",
+    "image": "path/to/image",
+    "price": 290,
+    "colors": ["Grey"],
+    "features": [
+      {
+        "description": ["Comfortable and supportive", "Mesh and suede upper"],
+        "isAvailable": true
+      }
+    ],
+    "user": "asdhf7qe845hawe8aear"
+  },
+  {
+    "name": "Dunk Low",
+    "brand": "Nike",
+    "image": "path/to/image",
+    "price": 120,
+    "colors": ["Black", "White"],
+    "features": [
+      {
+        "description": ["Classic basketball shoe design", "Leather upper"],
+        "isAvailable": true
+      }
+    ],
+    "user": "qwgebfq7fbadskgasfgaf"
+  },
+  {
+    "name": "Gazelle",
+    "brand": "Adidas",
+    "image": "path/to/image",
+    "price": 90,
+    "colors": ["Blue"],
+    "features": [
+      {
+        "description": ["Retro-inspired design", "Suede upper"],
+        "isAvailable": true
+      }
+    ],
+    "user": "1634gtbfandmsgaeryadf"
+  },
+  {
+    "name": "Chuck 70 High Top",
+    "brand": "Converse",
+    "image": "path/to/image",
+    "price": 80,
+    "colors": ["White"],
+    "features": [
+      {
+        "description": ["Iconic high-top sneaker", "Canvas upper"],
+        "isAvailable": true
+      }
+    ],
+    "user": "2374tgbafgadf8gadfgwwr"
+  },
+  {
+    "name": "Reebok",
+    "brand": "Reebok",
+    "image": "path/to/image",
+    "price": 100,
+    "colors": ["Black", "Green"],
+    "features": [
+      {
+        "description": ["Classic athletic shoe", "Leather and textile upper"],
+        "isAvailable": true
+      }
+    ],
+    "user": "fsdvs472g3gfegjhnb548o"
+  }
+]
