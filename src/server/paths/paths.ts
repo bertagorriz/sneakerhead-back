@@ -1,8 +1,9 @@
 import type PathsStructure from "./types";
 
-const path: PathsStructure = {
+const paths: PathsStructure = {
   ping: "/",
   user: "/user",
+  login: "/login",
 };
 
-export default path;
+export default paths;
