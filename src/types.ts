@@ -28,7 +28,8 @@ export interface SneakersStructure {
 }
 
 export interface FeaturesSneakersStructure {
-  description: string[];
+  description: string;
+  description2?: string;
   isAvailable: boolean;
 }
 

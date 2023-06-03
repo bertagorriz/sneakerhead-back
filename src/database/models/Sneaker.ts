@@ -21,7 +21,13 @@ const sneakerSchema = new Schema({
   },
   colors: [String],
   features: {
-    description: [String],
+    description: {
+      type: String,
+      required: true,
+    },
+    description2: {
+      type: String,
+    },
     isAvailable: Boolean,
   },
   user: {
