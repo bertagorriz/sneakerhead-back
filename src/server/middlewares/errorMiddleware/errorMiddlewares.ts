@@ -1,10 +1,10 @@
-import "../../loadEnvironment.js";
+import "../../../loadEnvironment.js";
 import { type NextFunction, type Request, type Response } from "express";
 import { ValidationError } from "express-validation";
 import createDebug from "debug";
 import chalk from "chalk";
-import type CustomError from "../../CustomError/CustomError.js";
-import { responseErrorData } from "../../utils/responseData/responseErrorData.js";
+import type CustomError from "../../../CustomError/CustomError.js";
+import { responseErrorData } from "../../../utils/responseData/responseErrorData.js";
 
 const debug = createDebug("sneakers-api:server:middlewares:errorMiddlewares");
 
@@ -18,7 +18,7 @@ export const generalError = (
 
   if (error instanceof ValidationError && error.details.body) {
     const validationError = error.details.body
-      .map((joiError) => joiError.message.replaceAll("\\", ""))
+      .map((joiError) => joiError.message.replaceAll('"', ""))
       .join(" & ");
 
     (error as CustomError).publicMessage = validationError;
@@ -28,7 +28,7 @@ export const generalError = (
 
   const statusCode = error.statusCode || 500;
 
-  const message = error.statusCode ? error.message : "General error";
+  const message = error.statusCode ? error.publicMessage : "General error";
 
   res.status(statusCode).json({ message });
 };
