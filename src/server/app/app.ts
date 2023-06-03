@@ -5,13 +5,16 @@ import morgan from "morgan";
 import {
   generalError,
   notFoundError,
-} from "../middlewares/errorMiddlewares.js";
+} from "../middlewares/errorMiddleware/errorMiddlewares.js";
 import { pingController } from "../controllers/pingController/pingController.js";
 import paths from "../paths/paths.js";
 import userRouter from "../routers/users/userRouter.js";
 import { getSneakers } from "../controllers/sneakerController/sneakerController.js";
 
-const allowedOrigins = [process.env.ALLOWED_ORIGIN_DEV!];
+const allowedOrigins = [
+  process.env.ALLOWED_ORIGIN_DEV!,
+  process.env.ALLOWED_ORIGIN_PROD!,
+];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,

@@ -82,9 +82,9 @@ describe("Given a POST '/user/login' endpoint", () => {
   });
 
   describe("When it receives a request without password", () => {
-    test("Then it should return the response's method status with status code '400' and the message 'Validation Failed'", async () => {
+    test("Then it should return the response's method status with status code '400' and the message 'password is not allowed to be empty'", async () => {
       const expectedStatusCode = 400;
-      const expectedMessage = "Validation Failed";
+      const expectedMessage = "password is not allowed to be empty";
 
       const response = await request(app)
         .post(`${paths.user}${paths.login}`)
