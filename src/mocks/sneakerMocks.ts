@@ -10,7 +10,8 @@ export const mockSneakers: SneakerDatabaseStructure[] = [
     price: 290,
     colors: ["Grey"],
     features: {
-      description: ["Comfortable and supportive", "Mesh and suede upper"],
+      description: "Comfortable and supportive",
+      description2: "Mesh and suede upper",
       isAvailable: true,
     },
     user: "asdgaga7faghtaga",
@@ -23,7 +24,8 @@ export const mockSneakers: SneakerDatabaseStructure[] = [
     price: 120,
     colors: ["Black", "White"],
     features: {
-      description: ["Classic basketball shoe design", "Leather upper"],
+      description: "Classic basketball shoe design",
+      description2: "Leather upper",
       isAvailable: true,
     },
     user: "asdga4733vasdffgs",
