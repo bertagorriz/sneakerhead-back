@@ -1,3 +1,4 @@
+import type * as core from "express-serve-static-core";
 import { type Request } from "express";
 import { type Types } from "mongoose";
 
@@ -37,4 +38,14 @@ export interface SneakerUniqueStructure extends SneakersStructure {
 
 export interface SneakerDatabaseStructure extends SneakersStructure {
   _id: Types.ObjectId;
+}
+
+export interface CustomRequest<
+  P = core.ParamsDictionary,
+  ResBody = any,
+  ReqBody = any,
+  ReqQuery = core.Query,
+  Locals extends Record<string, any> = Record<string, any>
+> extends core.Request<P, ResBody, ReqBody, ReqQuery, Locals> {
+  userId: string;
 }
