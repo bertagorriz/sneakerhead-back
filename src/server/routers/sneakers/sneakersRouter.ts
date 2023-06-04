@@ -1,7 +1,7 @@
 import { Router } from "express";
-import paths from "../../paths/paths";
-import { auth } from "../../middlewares/authMiddleware/authMiddleware";
-import { getSneakers } from "../../controllers/sneakerController/sneakerController";
+import paths from "../../paths/paths.js";
+import { auth } from "../../middlewares/authMiddleware/authMiddleware.js";
+import { getSneakers } from "../../controllers/sneakerController/sneakerController.js";
 
 const sneakersRouter = Router();
 
