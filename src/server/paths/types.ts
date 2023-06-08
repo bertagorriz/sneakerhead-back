@@ -4,6 +4,7 @@ interface PathsStructure {
   user: string;
   login: string;
   senakers: string;
+  delete: string;
 }
 
 export default PathsStructure;

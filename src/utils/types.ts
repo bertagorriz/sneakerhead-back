@@ -6,4 +6,5 @@ export interface ErrorStructure {
   serverError: Error;
   tokenNotFound: CustomError;
   invalidToken: CustomError;
+  idNotFound: CustomError;
 }

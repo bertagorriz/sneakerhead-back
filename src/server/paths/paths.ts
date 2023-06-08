@@ -6,6 +6,7 @@ const paths: PathsStructure = {
   user: "/user",
   login: "/login",
   senakers: "/sneakers",
+  delete: "/delete/:id",
 };
 
 export default paths;
