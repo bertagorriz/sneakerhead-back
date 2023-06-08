@@ -14,7 +14,7 @@ export const mockSneakers: SneakerDatabaseStructure[] = [
       description2: "Mesh and suede upper",
       isAvailable: true,
     },
-    user: "asdgaga7faghtaga",
+    user: "647104a861b26ee42aa5398b",
   },
   {
     _id: new Types.ObjectId(),
@@ -28,6 +28,6 @@ export const mockSneakers: SneakerDatabaseStructure[] = [
       description2: "Leather upper",
       isAvailable: true,
     },
-    user: "asdga4733vasdffgs",
+    user: "647104a861b26ee42aa5398b",
   },
 ];

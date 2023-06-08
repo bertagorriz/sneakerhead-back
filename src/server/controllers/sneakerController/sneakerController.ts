@@ -22,3 +22,25 @@ export const getSneakers = async (
     next(customError);
   }
 };
+
+export const deleteSneakers = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+
+    const sneakerToDelete = await Sneaker.findByIdAndDelete(id).exec();
+
+    if (!sneakerToDelete) {
+      const customError = responseErrorData.idNotFound;
+
+      throw customError;
+    }
+
+    res.status(200).json({ message: "Sneaker successfully deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
