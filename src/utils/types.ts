@@ -7,4 +7,5 @@ export interface ErrorStructure {
   tokenNotFound: CustomError;
   invalidToken: CustomError;
   idNotFound: CustomError;
+  sneakerNotFound: CustomError;
 }

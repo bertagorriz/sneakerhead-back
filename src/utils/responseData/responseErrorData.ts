@@ -8,4 +8,5 @@ export const responseErrorData: ErrorStructure = {
   tokenNotFound: new CustomError(401, "Missing token"),
   invalidToken: new CustomError(401, "Invalid token"),
   idNotFound: new CustomError(404, "Sneaker not found"),
+  sneakerNotFound: new CustomError(404, "Sneaker not found"),
 };

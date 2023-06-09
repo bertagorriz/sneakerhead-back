@@ -5,6 +5,7 @@ interface PathsStructure {
   login: string;
   senakers: string;
   delete: string;
+  addSneaker: string;
 }
 
 export default PathsStructure;
