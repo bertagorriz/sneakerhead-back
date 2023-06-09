@@ -6,6 +6,8 @@ import {
   deleteSneakers,
   getSneakers,
 } from "../../controllers/sneakerController/sneakerController.js";
+import { validate } from "express-validation";
+import addSneakersSchema from "../../../utils/Schemas/addSneakersSchema.js";
 
 const sneakersRouter = Router();
 
@@ -13,6 +15,11 @@ sneakersRouter.get(paths.root, auth, getSneakers);
 
 sneakersRouter.delete(paths.delete, auth, deleteSneakers);
 
-sneakersRouter.post(paths.addSneaker, auth, addSneakers);
+sneakersRouter.post(
+  paths.addSneaker,
+  auth,
+  validate(addSneakersSchema, {}, { abortEarly: false }),
+  addSneakers
+);
 
 export default sneakersRouter;
