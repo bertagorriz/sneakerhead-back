@@ -50,3 +50,8 @@ export interface CustomRequest<
 > extends core.Request<P, ResBody, ReqBody, ReqQuery, Locals> {
   userId: string;
 }
+
+export interface AddSneakersCustomRequest extends Request {
+  body: SneakersStructure;
+  userId: string;
+}

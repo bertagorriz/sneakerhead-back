@@ -1,5 +1,8 @@
 import { Types } from "mongoose";
-import { type SneakerDatabaseStructure } from "../types";
+import {
+  type SneakersStructure,
+  type SneakerDatabaseStructure,
+} from "../types";
 
 export const mockSneakers: SneakerDatabaseStructure[] = [
   {
@@ -31,3 +34,17 @@ export const mockSneakers: SneakerDatabaseStructure[] = [
     user: "647104a861b26ee42aa5398b",
   },
 ];
+
+export const mockSneakerToAdd: Partial<SneakersStructure> = {
+  name: "Dunk Low",
+  brand: "Nike",
+  image: "path/to/image",
+  price: 120,
+  colors: ["Black", "White"],
+  features: {
+    description: "Classic basketball shoe design",
+    description2: "Leather upper",
+    isAvailable: true,
+  },
+  user: "647104a861b26ee42aa5398b",
+};

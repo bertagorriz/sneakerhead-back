@@ -3,8 +3,9 @@ interface PathsStructure {
   root: string;
   user: string;
   login: string;
-  senakers: string;
+  sneakers: string;
   delete: string;
+  addSneaker: string;
 }
 
 export default PathsStructure;

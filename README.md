@@ -16,9 +16,15 @@
 
   :green_circle: `Status 200`
 
-- **[DELETE]/delete/:id**
+- **[DELETE]/sneakers/delete/:id**
 
   :green_circle: `Status 200 "Sneaker successfully deleted"`
+
+  :red_circle: `Status 404 "Sneaker not found"`
+
+- **[POST]/sneakers/**
+
+  :green_circle: `Status 201 { newSneaker }`
 
   :red_circle: `Status 404 "Sneaker not found"`
 

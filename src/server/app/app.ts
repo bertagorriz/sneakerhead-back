@@ -34,7 +34,7 @@ app.get(paths.ping, pingController);
 
 app.use(paths.user, userRouter);
 
-app.use(paths.senakers, sneakersRouter);
+app.use(paths.sneakers, sneakersRouter);
 
 app.use(notFoundError);
 
