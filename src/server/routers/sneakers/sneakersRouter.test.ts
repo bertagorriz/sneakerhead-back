@@ -8,6 +8,7 @@ import Sneaker from "../../../database/models/Sneaker.js";
 import { app } from "../../app/app.js";
 import paths from "../../paths/paths.js";
 import { getSneakersDataMock } from "../../../mocks/factories/sneakersFactory.js";
+import { mockSneakerToAdd } from "../../../mocks/sneakerMocks.js";
 
 let server: MongoMemoryServer;
 
@@ -28,6 +29,8 @@ afterEach(async () => {
 
 const sneakerList = getSneakersDataMock(5);
 
+const sneakerToAdd = mockSneakerToAdd;
+
 describe("Given a GET '/sneakers' endpoint", () => {
   beforeEach(async () => {
     await User.create(userDataHashed);
@@ -39,7 +42,7 @@ describe("Given a GET '/sneakers' endpoint", () => {
       const expectedStatusCode = 200;
 
       const response = await request(app)
-        .get(paths.senakers)
+        .get(paths.sneakers)
         .set("Authorization", `Bearer ${userToken}`)
         .expect(expectedStatusCode);
 
@@ -78,6 +81,43 @@ describe("Given a DELETE 'delete/:id' endpoint", () => {
       const response = await request(app)
         .delete(`/sneakers/delete/${sneakerId}`)
         .set("Authorization", `Bearer ${userToken}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a POST '/' endpoint", () => {
+  beforeEach(async () => {
+    await Sneaker.create();
+  });
+
+  describe("When it receives a request with a valid sneaker data", () => {
+    test("Then it should return the response's method status with status code '201'", async () => {
+      const expectedStatusCode = 201;
+      const expectedProperty = "newSneaker";
+
+      const response = await request(app)
+        .post(paths.sneakers)
+        .set("Authorization", `Bearer ${userToken}`)
+        .send(sneakerToAdd)
+        .expect(expectedStatusCode);
+
+      expect(response.body).toHaveProperty(expectedProperty);
+    });
+  });
+
+  describe("When it receives a request with missing name required property", () => {
+    test("Then it should return the response's method status with status code '400'", async () => {
+      const expectedStatusCode = 400;
+      const expectedMessage = "name is not allowed to be empty";
+      sneakerToAdd.name = "";
+
+      const response = await request(app)
+        .post(paths.sneakers)
+        .set("Authorization", `Bearer ${userToken}`)
+        .send(sneakerToAdd)
         .expect(expectedStatusCode);
 
       expect(response.body.message).toBe(expectedMessage);

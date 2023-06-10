@@ -7,7 +7,7 @@ const addSneakersSchema = {
     brand: Joi.string().required(),
     image: Joi.string().required(),
     price: Joi.number().required(),
-    colors: [Joi.string().required()],
+    colors: Joi.array().items(Joi.string().required()),
     features: Joi.object({
       description: Joi.string().required(),
       description2: Joi.string(),
