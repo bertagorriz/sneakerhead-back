@@ -7,6 +7,46 @@
   },
   "item": [
     {
+      "name": "/",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/sneakers",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYjI4YTYxYjI2ZWU0MmFhNTM5NzYiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU5MDcxMTYsImV4cCI6MTY5MjIxNDMxNn0.0VtC5Ga-ybsWD2FD3n_6Isr1cCikEapfIep0UGxgdyU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/sneakers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["sneakers"]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "/user/login",
       "request": {
         "method": "POST",
@@ -31,24 +71,60 @@
       "response": []
     },
     {
-      "name": "/sneakers",
+      "name": "/sneakers/delete/:id",
       "request": {
-        "method": "GET",
-        "header": []
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYjI4YTYxYjI2ZWU0MmFhNTM5NzYiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODYyMTMwNzksImV4cCI6MTY5MjUyMDI3OX0.h81KFPovwn2VrJlthJqrnvTyMDWLoIKE-4B9gozVp6g",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/sneakers/delete/647b581ff9c460904e828107",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["sneakers", "delete", "647b581ff9c460904e828107"]
+        }
       },
       "response": []
     },
     {
-      "name": "/",
+      "name": "/sneakers/",
       "request": {
-        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYjI4YTYxYjI2ZWU0MmFhNTM5NzYiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU5MDcxMTYsImV4cCI6MTY5MjIxNDMxNn0.0VtC5Ga-ybsWD2FD3n_6Isr1cCikEapfIep0UGxgdyU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"features\": {}\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "http://localhost:4000/",
+          "raw": "http://localhost:4000/sneakers/",
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": [""]
+          "path": ["sneakers", ""]
         }
       },
       "response": []
