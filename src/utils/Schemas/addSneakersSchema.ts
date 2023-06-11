@@ -10,7 +10,7 @@ const addSneakersSchema = {
     colors: Joi.array().items(Joi.string().required()),
     features: Joi.object({
       description: Joi.string().required(),
-      description2: Joi.string(),
+      description2: Joi.string().allow(""),
       isAvailable: Joi.boolean().required(),
     }),
     user: Joi.string(),
