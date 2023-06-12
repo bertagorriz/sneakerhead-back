@@ -2,7 +2,10 @@ import { type NextFunction, type Request, type Response } from "express";
 import createDebug from "debug";
 import Sneaker from "../../../database/models/Sneaker.js";
 import { responseErrorData } from "../../../utils/responseData/responseErrorData.js";
-import { type AddSneakersCustomRequest } from "../../../types.js";
+import {
+  type LoadSneakersCustomRequest,
+  type AddSneakersCustomRequest,
+} from "../../../types.js";
 import { Types } from "mongoose";
 
 const debug = createDebug(
@@ -10,14 +13,22 @@ const debug = createDebug(
 );
 
 export const getSneakers = async (
-  _req: Request,
+  req: LoadSneakersCustomRequest,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const sneakers = await Sneaker.find().limit(10).exec();
+    const {
+      query: { limit },
+    } = req;
 
-    res.status(200).json({ sneakers });
+    const limitSneakers = Number(limit);
+
+    const sneakers = await Sneaker.find().limit(limitSneakers).exec();
+
+    const totalSneakers = await Sneaker.where().countDocuments();
+
+    res.status(200).json({ sneakers, totalSneakers });
   } catch (error) {
     const customError = responseErrorData.serverError;
     debug(error.message);

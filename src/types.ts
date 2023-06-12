@@ -55,3 +55,10 @@ export interface AddSneakersCustomRequest extends Request {
   body: SneakersStructure;
   userId: string;
 }
+
+export interface LoadSneakersCustomRequest extends Request {
+  body: SneakersStructure;
+  query: {
+    limit?: string;
+  };
+}

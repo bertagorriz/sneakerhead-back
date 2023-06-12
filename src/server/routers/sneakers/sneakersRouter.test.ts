@@ -89,10 +89,6 @@ describe("Given a DELETE 'delete/:id' endpoint", () => {
 });
 
 describe("Given a POST '/' endpoint", () => {
-  beforeEach(async () => {
-    await Sneaker.create();
-  });
-
   describe("When it receives a request with a valid sneaker data", () => {
     test("Then it should return the response's method status with status code '201'", async () => {
       const expectedStatusCode = 201;

@@ -7,7 +7,10 @@ import {
   getSneakers,
 } from "./sneakerController.js";
 import { responseErrorData } from "../../../utils/responseData/responseErrorData.js";
-import { type CustomRequest } from "../../../types.js";
+import {
+  type LoadSneakersCustomRequest,
+  type CustomRequest,
+} from "../../../types.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import { getSneakersDataMock } from "../../../mocks/factories/sneakersFactory.js";
 import { Types } from "mongoose";
@@ -21,8 +24,14 @@ const errorMessage = "Sneaker not found";
 
 const sneakerToAdd = getSneakersDataMock(1);
 
+const limit = "5";
+
 describe("Given a getSenakers controller", () => {
-  const req = {};
+  const req: Partial<LoadSneakersCustomRequest> = {
+    query: {
+      limit,
+    },
+  };
 
   const res: Partial<Response> = {
     status: jest.fn().mockReturnThis(),
@@ -33,24 +42,40 @@ describe("Given a getSenakers controller", () => {
 
   describe("When it receives a response", () => {
     Sneaker.find = jest.fn().mockReturnValue({
-      limit: jest.fn().mockReturnThis(),
-      exec: jest.fn().mockResolvedValue(mockSneakers),
+      limit: jest.fn().mockReturnValue({
+        exec: jest.fn().mockResolvedValue(mockSneakers),
+      }),
+    });
+
+    Sneaker.where = jest.fn().mockReturnValue({
+      countDocuments: jest.fn().mockReturnValue(mockSneakers.length),
     });
 
     test("Then it should call the response's method with status 200", async () => {
       const expectedStatusCode = 200;
 
-      await getSneakers(req as Request, res as Response, next as NextFunction);
+      await getSneakers(
+        req as LoadSneakersCustomRequest,
+        res as Response,
+        next as NextFunction
+      );
 
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
     test("Then it should call the response's method json with a list of two sneakers", async () => {
-      const expectedSneakers = { sneakers: mockSneakers };
+      const expectedSneakers = mockSneakers;
 
-      await getSneakers(req as Request, res as Response, next as NextFunction);
+      await getSneakers(
+        req as LoadSneakersCustomRequest,
+        res as Response,
+        next as NextFunction
+      );
 
-      expect(res.json).toHaveBeenCalledWith(expectedSneakers);
+      expect(res.json).toHaveBeenCalledWith({
+        sneakers: expectedSneakers,
+        totalSneakers: expectedSneakers.length,
+      });
     });
   });
 
