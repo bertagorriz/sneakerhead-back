@@ -82,3 +82,25 @@ export const addSneakers = async (
     next(error);
   }
 };
+
+export const getSneakerById = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+
+    const sneaker = await Sneaker.findById(id).exec();
+
+    if (!sneaker) {
+      const customError = responseErrorData.sneakerNotFound;
+
+      throw customError;
+    }
+
+    res.status(200).json({ sneaker });
+  } catch (error) {
+    next(error);
+  }
+};

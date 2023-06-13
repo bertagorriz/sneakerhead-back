@@ -6,6 +6,7 @@ interface PathsStructure {
   sneakers: string;
   delete: string;
   addSneaker: string;
+  getSneaker: string;
 }
 
 export default PathsStructure;
