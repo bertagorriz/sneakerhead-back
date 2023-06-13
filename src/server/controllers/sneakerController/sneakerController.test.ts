@@ -1,9 +1,10 @@
 import { type NextFunction, type Request, type Response } from "express";
 import Sneaker from "../../../database/models/Sneaker.js";
-import { mockSneakers } from "../../../mocks/sneakerMocks.js";
+import { mockSneakerToAdd, mockSneakers } from "../../../mocks/sneakerMocks.js";
 import {
   addSneakers,
   deleteSneakers,
+  getSneakerById,
   getSneakers,
 } from "./sneakerController.js";
 import { responseErrorData } from "../../../utils/responseData/responseErrorData.js";
@@ -213,6 +214,65 @@ describe("Given an addSneakers controller", () => {
 
       await addSneakers(
         req as CustomRequest,
+        res as Response,
+        next as NextFunction
+      );
+
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+});
+
+describe("Given a getSneakerById controller", () => {
+  const req: Partial<CustomRequest> = {
+    params: { id: mockSneakers[0]._id.toString() },
+  };
+
+  const res: Partial<Response> = {
+    status: jest.fn().mockReturnThis(),
+    json: jest.fn(),
+  };
+
+  const next = jest.fn();
+
+  describe("When it receives a request with a valid sneaker id, a response and a next function", () => {
+    Sneaker.findById = jest.fn().mockReturnValue({
+      exec: jest.fn().mockResolvedValue(mockSneakerToAdd),
+    });
+
+    test("Then it should call the response's method status 200", async () => {
+      const expectedStatusCode = 200;
+
+      await getSneakerById(
+        req as CustomRequest<{ id: string }>,
+        res as Response,
+        next as NextFunction
+      );
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
+    });
+
+    test("Then it should call the response's method json with the sneaker", async () => {
+      await getSneakerById(
+        req as CustomRequest<{ id: string }>,
+        res as Response,
+        next as NextFunction
+      );
+
+      expect(res.json).toHaveBeenCalledWith({ sneaker: mockSneakerToAdd });
+    });
+  });
+
+  describe("When it receives a request with an invalid id, a response and a next function", () => {
+    test("Then it should call the next function with the message 'Sneaker not found'", async () => {
+      const error = new CustomError(errorStatus, errorMessage);
+
+      Sneaker.findById = jest.fn().mockReturnValue({
+        exec: jest.fn().mockResolvedValue(null),
+      });
+
+      await getSneakerById(
+        req as CustomRequest<{ id: string }>,
         res as Response,
         next as NextFunction
       );
