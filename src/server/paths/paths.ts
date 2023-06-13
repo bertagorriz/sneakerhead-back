@@ -8,6 +8,7 @@ const paths: PathsStructure = {
   sneakers: "/sneakers",
   delete: "/delete/:id",
   addSneaker: "/",
+  getSneaker: "/:id",
 };
 
 export default paths;

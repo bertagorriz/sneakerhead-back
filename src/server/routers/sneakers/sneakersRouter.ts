@@ -4,6 +4,7 @@ import { auth } from "../../middlewares/authMiddleware/authMiddleware.js";
 import {
   addSneakers,
   deleteSneakers,
+  getSneakerById,
   getSneakers,
 } from "../../controllers/sneakerController/sneakerController.js";
 import { validate } from "express-validation";
@@ -21,5 +22,7 @@ sneakersRouter.post(
   validate(addSneakersSchema, {}, { abortEarly: false }),
   addSneakers
 );
+
+sneakersRouter.get(paths.getSneaker, auth, getSneakerById);
 
 export default sneakersRouter;
