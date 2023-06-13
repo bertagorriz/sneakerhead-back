@@ -79,7 +79,7 @@ describe("Given a DELETE 'delete/:id' endpoint", () => {
       const sneakerId = "647b581ff9c460904e828107";
 
       const response = await request(app)
-        .delete(`/sneakers/delete/${sneakerId}`)
+        .delete(`${paths.sneakers}/delete/${sneakerId}`)
         .set("Authorization", `Bearer ${userToken}`)
         .expect(expectedStatusCode);
 
@@ -114,6 +114,43 @@ describe("Given a POST '/' endpoint", () => {
         .post(paths.sneakers)
         .set("Authorization", `Bearer ${userToken}`)
         .send(sneakerToAdd)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a GET 'sneakers/:id' endpoint", () => {
+  beforeEach(async () => {
+    await Sneaker.create(sneakerList);
+  });
+
+  describe("When it receives a request with a valid id", () => {
+    test("Then it should return the response's method status with status code '200' and the sneaker", async () => {
+      const expectedStatusCode = 200;
+      const property = "sneaker";
+
+      const sneaker = await Sneaker.find().exec();
+
+      const response = await request(app)
+        .get(`${paths.sneakers}/${sneaker[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body).toHaveProperty(property);
+    });
+  });
+
+  describe("When it receives a request with an invalid id", () => {
+    test("Then it should respond with an error with status code '404' and the message 'Endpoint not found'", async () => {
+      const expectedStatusCode = 404;
+      const expectedMessage = "Endpoint not found";
+      const sneakerId = "647b581ff9c460904e828107";
+
+      const response = await request(app)
+        .delete(`${paths.sneakers}/${sneakerId}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .expect(expectedStatusCode);
 
       expect(response.body.message).toBe(expectedMessage);
