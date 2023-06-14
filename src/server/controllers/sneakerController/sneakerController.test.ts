@@ -51,7 +51,9 @@ describe("Given a getSenakers controller", () => {
     });
 
     Sneaker.where = jest.fn().mockReturnValue({
-      countDocuments: jest.fn().mockReturnValue(mockSneakers.length),
+      countDocuments: jest.fn().mockReturnValue({
+        exec: jest.fn().mockResolvedValue(mockSneakers.length),
+      }),
     });
 
     test("Then it should call the response's method with status 200", async () => {
