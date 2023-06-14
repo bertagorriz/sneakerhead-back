@@ -1,6 +1,5 @@
 import { Router } from "express";
 import paths from "../../paths/paths.js";
-import { auth } from "../../middlewares/authMiddleware/authMiddleware.js";
 import {
   addSneakers,
   deleteSneakers,
@@ -12,17 +11,16 @@ import addSneakersSchema from "../../../utils/Schemas/addSneakersSchema.js";
 
 const sneakersRouter = Router();
 
-sneakersRouter.get(paths.root, auth, getSneakers);
+sneakersRouter.get(paths.root, getSneakers);
 
-sneakersRouter.delete(paths.delete, auth, deleteSneakers);
+sneakersRouter.delete(paths.delete, deleteSneakers);
 
 sneakersRouter.post(
   paths.addSneaker,
-  auth,
   validate(addSneakersSchema, {}, { abortEarly: false }),
   addSneakers
 );
 
-sneakersRouter.get(paths.getSneaker, auth, getSneakerById);
+sneakersRouter.get(paths.getSneaker, getSneakerById);
 
 export default sneakersRouter;
