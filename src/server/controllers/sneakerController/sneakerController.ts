@@ -29,7 +29,7 @@ export const getSneakers = async (
       .limit(limitSneakers)
       .exec();
 
-    const totalSneakers = await Sneaker.where().countDocuments();
+    const totalSneakers = await Sneaker.where().countDocuments().exec();
 
     res.status(200).json({ sneakers, totalSneakers });
   } catch (error) {
