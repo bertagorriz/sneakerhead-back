@@ -43,8 +43,10 @@ describe("Given a getSenakers controller", () => {
 
   describe("When it receives a response", () => {
     Sneaker.find = jest.fn().mockReturnValue({
-      limit: jest.fn().mockReturnValue({
-        exec: jest.fn().mockResolvedValue(mockSneakers),
+      sort: jest.fn().mockReturnValue({
+        limit: jest.fn().mockReturnValue({
+          exec: jest.fn().mockResolvedValue(mockSneakers),
+        }),
       }),
     });
 
