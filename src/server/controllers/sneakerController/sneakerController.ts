@@ -24,7 +24,10 @@ export const getSneakers = async (
 
     const limitSneakers = Number(limit);
 
-    const sneakers = await Sneaker.find().limit(limitSneakers).exec();
+    const sneakers = await Sneaker.find()
+      .sort({ _id: -1 })
+      .limit(limitSneakers)
+      .exec();
 
     const totalSneakers = await Sneaker.where().countDocuments();
 
