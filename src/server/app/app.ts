@@ -10,6 +10,7 @@ import { pingController } from "../controllers/pingController/pingController.js"
 import paths from "../paths/paths.js";
 import userRouter from "../routers/users/userRouter.js";
 import sneakersRouter from "../routers/sneakers/sneakersRouter.js";
+import { auth } from "../middlewares/authMiddleware/authMiddleware.js";
 
 const allowedOrigins = [
   process.env.ALLOWED_ORIGIN_DEV!,
@@ -34,7 +35,7 @@ app.get(paths.ping, pingController);
 
 app.use(paths.user, userRouter);
 
-app.use(paths.sneakers, sneakersRouter);
+app.use(paths.sneakers, auth, sneakersRouter);
 
 app.use(notFoundError);
 
